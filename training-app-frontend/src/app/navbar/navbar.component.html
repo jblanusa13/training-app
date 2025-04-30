@@ -1,0 +1,14 @@
+<header class="header">
+  <h2 class="logo">Training App</h2>
+  <div>
+    <nav class="navbar">
+      <ul>
+        <li><button (click)="login()" *ngIf="!user.email">Login</button></li>
+        <li>
+          <button (click)="register()" *ngIf="!user.email">Register</button>
+        </li>
+        <li><button (click)="logout()" *ngIf="user.email">Logout</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>

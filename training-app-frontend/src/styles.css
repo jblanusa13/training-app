@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap");
+
+:root {
+  --primary-color: #fff;
+  --secondary-color: #caeaa4;
+  --tertiary-color: #78c0e0;
+  --accent-color: #dbd2e0;
+  --text-color: #000;
+  --accent-text-color: #000000;
+
+  --fnt-body: "Mukta", Geneva, Verdana, sans-serif;
+  --fnt-heading: "Fugaz One", Georgia, serif;
+}
+
+html {
+  background-color: var(--primary-color);
+  font-size: 62.5%;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-size: 1.8rem;
+  font-family: var(--fnt-body);
+  color: var(--text-color);
+}

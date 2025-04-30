@@ -1,3 +1,7 @@
+using Microsoft.Net.Http.Headers;
+using TrainingApp.Config;
+using TrainingApp.Config.Auth;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,9 +16,14 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod();
+        policy.WithOrigins(allowedOrigins)
+        .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "access_token")
+                        .WithMethods("GET", "PUT", "POST", "PATCH", "DELETE", "OPTIONS");
     });
 });
+
+builder.Services.ConfigureAuth();
+builder.Services.SetupDependencyInjection(builder.Configuration);
 
 var app = builder.Build();
 
@@ -28,6 +37,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -1,0 +1,31 @@
+.header {
+  width: 100%;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  padding: 0rem 4rem;
+}
+
+.logo {
+  padding: 0rem 4rem;
+  font-family: var(--fnt-heading);
+  color: var(--tertriary-color);
+}
+
+button {
+  background: transparent;
+  border: 0px;
+  font-size: 1.8rem;
+  font-family: var(--fnt-body);
+  color: var(--accent-text-color);
+  padding: 2rem 2rem;
+}
+
+.navbar button:hover {
+  text-decoration: underline;
+}

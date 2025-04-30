@@ -1,0 +1,62 @@
+<div class="card">
+  <div class="register-card">
+    <div class="main-text">Register</div>
+    <form [formGroup]="userForm">
+      <div class="form">
+        <div class="form-column">
+          <div class="form-field">
+            <input
+              formControlName="name"
+              type="text"
+              class="input"
+              placeholder="Name*"
+              required
+              ng-class="{ red: !isFormValid }"
+            />
+          </div>
+
+          <div class="form-field">
+            <input
+              formControlName="lastName"
+              type="text"
+              class="input"
+              placeholder="Last name*"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <input
+              formControlName="email"
+              type="text"
+              class="input"
+              placeholder="Email*"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <input
+              formControlName="password"
+              type="password"
+              class="input"
+              placeholder="Password*"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <input
+              formControlName="rePassword"
+              type="password"
+              class="input"
+              placeholder="Confirm password*"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn" (click)="register()">Submit</button>
+      <p *ngIf="!isFormValid" class="error">All fields must be entered!</p>
+    </form>
+  </div>
+</div>
