@@ -23,5 +23,6 @@ export interface LoginUserResponse {
 }
 
 export interface User {
+  id: string;
   email: string;
 }

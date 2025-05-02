@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap");
 
 :root {
   --primary-color: #fff;
@@ -9,7 +9,7 @@
   --text-color: #000;
   --accent-text-color: #000000;
 
-  --fnt-body: "Mukta", Geneva, Verdana, sans-serif;
+  --fnt-body: "Tajawal", Geneva, Verdana, sans-serif;
   --fnt-heading: "Fugaz One", Georgia, serif;
 }
 

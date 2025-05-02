@@ -8,7 +8,14 @@ namespace TrainingApp.Config.Auth
     {
         public static IServiceCollection ConfigureAuth(this IServiceCollection services)
         {
-            var key = Environment.GetEnvironmentVariable("JWT_KEY") ?? "xWHYazaKIMfQ560Wa1xZhy2WVKVv9ajD";
+            ConfigureAuthentication(services);
+           // ConfigureAuthorizationPolicies(services);
+            return services;
+        }
+
+        private static void ConfigureAuthentication(IServiceCollection services)
+        {
+            var key = Environment.GetEnvironmentVariable("JWT_KEY") ?? "GUIO9155CssUtSORCnFKLWihGlG5dYti";
             var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? "training";
             var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? "training-front.com";
 
@@ -40,8 +47,15 @@ namespace TrainingApp.Config.Auth
                         }
                     };
                 });
+        }
 
-            return services;
+        private static void ConfigureAuthorizationPolicies(IServiceCollection services)
+        {
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("trainingPolicy", policy => policy.RequireRole("user"));
+
+            });
         }
 
     }

@@ -12,14 +12,15 @@ export const authInterceptor: HttpInterceptorFn = (
   next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> => {
   const token = localStorage.getItem(ACCESS_TOKEN);
+
   let headers = {
     'Content-Type': 'application/json;charset=UTF-8',
-    'Access-Control-Allow-Origin': '*',
-    Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN),
+    Authorization: `Bearer ${token}`,
   };
   const req1 = req.clone({
     setHeaders: headers,
   });
+
   if (req.url.includes('user')) {
     return next(req);
   }

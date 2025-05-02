@@ -1,0 +1,90 @@
+<div class="card">
+  <div class="register-card">
+    <div class="text">Add new activity</div>
+    <form [formGroup]="activityForm">
+      <div class="form">
+        <div class="form-column-one">
+          <div class="form-field">
+            <p-dropdown
+              [options]="types"
+              optionLabel="name"
+              formControlName="type"
+              class="input"
+              placeholder="Training type*"
+            />
+          </div>
+
+          <div class="form-field">
+            <input
+              formControlName="duration"
+              type="text"
+              class="input"
+              placeholder="Duration"
+            />
+          </div>
+          <div class="form-field">
+            <input
+              formControlName="calories"
+              type="text"
+              class="input"
+              placeholder="Calories"
+            />
+          </div>
+
+          <div class="form-field">
+            <input
+              formControlName="difficulty"
+              type="number"
+              min="1"
+              max="10"
+              class="input"
+              placeholder="Difficulty"
+              onkeydown="return false"
+            />
+          </div>
+        </div>
+        <div class="form-column-two">
+          <div class="form-field">
+            <input
+              formControlName="tiredness"
+              type="number"
+              min="1"
+              max="10"
+              class="input"
+              placeholder="Tiredness"
+              onkeydown="return false"
+            />
+          </div>
+          <div class="form-field">
+            <input
+              formControlName="notes"
+              type="text"
+              class="input"
+              placeholder="Notes"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <p-calendar
+              formControlName="dateTime"
+              [iconDisplay]="'input'"
+              [showTime]="true"
+              [showIcon]="true"
+              inputId="icondisplay"
+              [maxDate]="maxDate"
+              class="input"
+            />
+          </div>
+          <div class="form-field-btn">
+            <button type="submit" class="btn" (click)="createTraining()">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+      <p *ngIf="!isFormValid" class="error">
+        All fields must be entered correctly!
+      </p>
+    </form>
+  </div>
+</div>

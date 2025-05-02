@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../auth/auth.service';
 import { User } from '../model/user.model';
 import { NgIf } from '@angular/common';
 
@@ -12,7 +12,7 @@ import { NgIf } from '@angular/common';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  user: User = { email: '' };
+  user: User = { id: '', email: '' };
 
   constructor(public router: Router, public authService: AuthService) {}
 

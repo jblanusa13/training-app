@@ -3,11 +3,11 @@ using Microsoft.Extensions.Configuration;
 using System.Data.Common;
 using TrainingApp.Config.Auth;
 using TrainingApp.Config.Mapper;
+using TrainingApp.Core.Service;
+using TrainingApp.Core.Service.IService;
 using TrainingApp.Data;
 using TrainingApp.Data.Repository;
 using TrainingApp.Data.Repository.IRepository;
-using TrainingApp.Service;
-using TrainingApp.Service.IService;
 
 namespace TrainingApp.Config
 {
@@ -24,12 +24,14 @@ namespace TrainingApp.Config
         private static void SetupServices(IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITrainingService, TrainingService>();
             services.AddScoped<ITokenGenerator, JwtTokenGenerator>();
         }
 
         private static void SetupRepository(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITrainingRepository, TrainingRepository>();
 
             services.AddDbContext<TrainingContext>(opt =>
                         opt.UseNpgsql(configuration.GetConnectionString("Database")));

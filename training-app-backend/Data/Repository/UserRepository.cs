@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TrainingApp.Core.Model;
 using TrainingApp.Data.Repository.IRepository;
-using TrainingApp.Model;
 
 namespace TrainingApp.Data.Repository
 {

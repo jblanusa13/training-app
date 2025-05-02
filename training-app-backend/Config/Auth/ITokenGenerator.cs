@@ -1,6 +1,6 @@
 ﻿using FluentResults;
-using TrainingApp.DTO;
-using TrainingApp.Model;
+using TrainingApp.API.DTO;
+using TrainingApp.Core.Model;
 
 namespace TrainingApp.Config.Auth
 {

@@ -3,14 +3,14 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using TrainingApp.DTO;
-using TrainingApp.Model;
+using TrainingApp.API.DTO;
+using TrainingApp.Core.Model;
 
 namespace TrainingApp.Config.Auth
 {
     public class JwtTokenGenerator : ITokenGenerator
     {
-        private readonly string _key = Environment.GetEnvironmentVariable("JWT_KEY") ?? "xWHYazaKIMfQ560Wa1xZhy2WVKVv9ajD";
+        private readonly string _key = Environment.GetEnvironmentVariable("JWT_KEY") ?? "GUIO9155CssUtSORCnFKLWihGlG5dYti";
         private readonly string _issuer = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? "training";
         private readonly string _audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? "training-front.com";
 

@@ -1,4 +1,4 @@
-﻿using TrainingApp.Model;
+﻿using TrainingApp.Core.Model;
 
 namespace TrainingApp.Data.Repository.IRepository
 {
