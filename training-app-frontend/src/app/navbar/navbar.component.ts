@@ -22,6 +22,9 @@ export class NavbarComponent {
       this.user = user;
     });
   }
+  home(): void {
+    this.router.navigate(['/welcome']);
+  }
 
   login(): void {
     this.router.navigate(['/']);
@@ -29,6 +32,14 @@ export class NavbarComponent {
 
   register(): void {
     this.router.navigate(['register']);
+  }
+
+  newActivity(): void {
+    this.router.navigate(['new']);
+  }
+
+  trainingProgress(): void {
+    this.router.navigate(['progress']);
   }
 
   logout(): void {

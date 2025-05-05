@@ -13,16 +13,6 @@ namespace TrainingApp.API.DTO
         public string Notes { get; set; }
         public string DateTime { get; set; }
 
-        public CreateTrainingResponseDto(string id, string typeId, double duration, double calories, int difficulty, int tiredness, string notes, string dateTime)
-        {
-            Id = id;
-            TypeId = typeId;
-            Duration = duration;
-            Calories = calories;
-            Difficulty = difficulty;
-            Tiredness = tiredness;
-            Notes = notes;
-            DateTime = dateTime;
-        }
+
     }
 }

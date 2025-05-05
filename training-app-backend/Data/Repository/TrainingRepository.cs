@@ -1,4 +1,6 @@
-﻿using TrainingApp.Core.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using TrainingApp.API.DTO;
+using TrainingApp.Core.Model;
 using TrainingApp.Data.Repository.IRepository;
 
 namespace TrainingApp.Data.Repository
@@ -15,6 +17,13 @@ namespace TrainingApp.Data.Repository
         public List<TrainingType> GetAllTypes()
         {
             return _dbContext.TrainingTypes.ToList();
+        }
+
+        public List<Training> GetAllBetweenDates(DateTime startDateTime)
+        {
+            return _dbContext.Trainings
+                    .Where(x => x.DateTime >= startDateTime && x.DateTime < startDateTime.AddMonths(1))
+                    .ToList();
         }
 
         public Training Create(Training training)

@@ -45,7 +45,7 @@ export class LoginComponent {
       next: (result) => {
         this.toast.success('Success!');
         if (result.accessToken) {
-          this.router.navigate(['/new']);
+          this.router.navigate(['/welcome']);
         }
       },
       error: (error) => {

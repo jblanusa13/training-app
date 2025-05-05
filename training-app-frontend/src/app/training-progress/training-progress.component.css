@@ -1,0 +1,134 @@
+.page {
+  height: 80%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  margin: 0rem;
+  height: 100%;
+  width: 40%;
+  border-radius: 1rem;
+  box-shadow: 1px 1px 5px lightgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  background-color: rgb(var(--clr-primary-1));
+}
+
+.filter-heading {
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-evenly;
+}
+
+.div-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: end;
+}
+
+.text {
+  font-size: 2rem;
+  font-family: var(--fnt-body);
+  font-weight: normal;
+  color: rgb(var(--fnt-color-dark));
+}
+
+.main-text {
+  font-size: 6rem;
+  font-family: var(--fnt-body);
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(var(--fnt-color-dark));
+  margin: 0rem;
+}
+
+.form {
+  width: 100%;
+}
+
+.filter {
+  width: 100%;
+}
+
+::ng-deep .calendar {
+  width: 100%;
+  margin: 1rem 0rem;
+}
+
+::ng-deep .calendar .p-inputtext {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.2rem;
+  border: 0.5px solid lightgray;
+
+  font-family: var(--fnt-body);
+}
+
+.btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.2rem;
+  border: 0;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+
+  font-family: var(--fnt-body);
+  font-weight: bold;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.week-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 90%;
+  padding: 1.5rem;
+}
+
+.dates {
+  margin: 0rem;
+  font-size: 2rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.stats-data {
+  display: flex;
+  justify-content: space-between;
+  margin: 0rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  align-items: center;
+  margin: 0rem;
+}
+
+.stat-name {
+  margin: 0rem;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: #a2a5aa;
+}
+
+.stat-number {
+  margin: 0rem;
+}
+
+.no-act {
+  margin: auto;
+}

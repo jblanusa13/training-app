@@ -24,11 +24,20 @@ namespace TrainingApp.API.Controllers
             return CreateResponse(result);
         }
 
+        [HttpPut("progress")]
+        public ActionResult<List<StatsResponseDto>> GetStatsForMonth([FromBody] MonthDto monthDto)
+        {
+            var result = _trainingService.GetStatsForMonth(monthDto);
+            return CreateResponse(result);
+        }
+
         [HttpGet("types")]
         public ActionResult<List<TrainingType>> GetAllTypes()
         {
             var result = _trainingService.GetAllTypes();
             return CreateResponse(result);
         }
+
+
     }
 }

@@ -1,8 +1,18 @@
 <header class="header">
-  <h2 class="logo">Training App</h2>
+  <h2 class="logo" (click)="home()">Training App</h2>
   <div>
     <nav class="navbar">
       <ul>
+        <li>
+          <button (click)="newActivity()" *ngIf="user.email">
+            New Activity
+          </button>
+        </li>
+        <li>
+          <button (click)="trainingProgress()" *ngIf="user.email">
+            Training Progress
+          </button>
+        </li>
         <li><button (click)="login()" *ngIf="!user.email">Login</button></li>
         <li>
           <button (click)="register()" *ngIf="!user.email">Register</button>

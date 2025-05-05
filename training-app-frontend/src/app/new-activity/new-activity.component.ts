@@ -79,42 +79,43 @@ export class NewActivityComponent {
   }
 
   createTraining(): void {
-    const trainingType = this.types.find(
-      (t) => t.name == this.activityForm.value.type?.name
-    );
+    if (this.activityForm.valid) {
+      const trainingType = this.types.find(
+        (t) => t.name == this.activityForm.value.type?.name
+      );
 
-    const rawDate = this.activityForm.value.dateTime ?? new Date();
-    const localDate = new Date(rawDate);
-    const utcString = localDate.toISOString();
+      const rawDate = this.activityForm.value.dateTime ?? new Date();
+      const localDate = new Date(rawDate);
+      const utcString = localDate.toISOString();
 
-    if (trainingType && this.user) {
-      const training: Training = {
-        type: trainingType,
-        userId: this.user.id,
-        duration: Number(this.activityForm.value.duration) || NaN,
-        calories: Number(this.activityForm.value.calories) || NaN,
-        difficulty: this.activityForm.value.difficulty || NaN,
-        tiredness: this.activityForm.value.tiredness || NaN,
-        notes: this.activityForm.value.notes || '',
-        dateTime: utcString,
-      };
+      if (trainingType && this.user) {
+        const training: Training = {
+          type: trainingType,
+          userId: this.user.id,
+          duration: Number(this.activityForm.value.duration) || NaN,
+          calories: Number(this.activityForm.value.calories) || NaN,
+          difficulty: this.activityForm.value.difficulty || NaN,
+          tiredness: this.activityForm.value.tiredness || NaN,
+          notes: this.activityForm.value.notes || '',
+          dateTime: utcString,
+        };
 
-      console.log('training: ', training);
-      if (this.activityForm.valid) {
+        console.log('training: ', training);
+
         this.service.createTraining(training).subscribe({
           next: (result) => {
             if (result) {
               this.toast.success('Success!');
-              this.router.navigate(['']);
+              this.router.navigate(['/welcome']);
             }
           },
           error: (error) => {
             console.log(error);
           },
         });
-      } else {
-        this.isFormValid = false;
       }
+    } else {
+      this.toast.error('You must enter all fields correctly', 'Error!');
     }
   }
 }

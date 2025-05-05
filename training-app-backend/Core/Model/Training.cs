@@ -16,21 +16,7 @@ namespace TrainingApp.Core.Model
         public string Notes { get; set; }
         public DateTime DateTime { get; set; }
 
-        public Training(Guid typeId,Guid userId, double duration, double calories, int difficulty, int tiredness, string notes, DateTime dateTime)
-        {
-            TypeId = typeId;
-            UserId = userId;
-            Duration = duration;
-            Calories = calories;
-            Difficulty = difficulty;
-            Tiredness = tiredness;
-            Notes = notes;
-            DateTime = dateTime;
-            Validate();
-            
-        }
-
-        private void Validate()
+        public void Validate()
         {
             if (string.IsNullOrWhiteSpace(TypeId.ToString())) throw new ArgumentException("Invalid Type");
             if (Difficulty > 10 || Difficulty < 0) throw new ArgumentException("Invalid Difficulty");

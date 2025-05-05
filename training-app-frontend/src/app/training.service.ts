@@ -5,6 +5,8 @@ import { environment } from '../env/environment';
 import { RegistrationUser, RegistrationUserResponse } from './model/user.model';
 import { TrainingType } from './model/training-types.model';
 import { Training, TrainingResponse } from './model/training.model';
+import { Month } from './model/month.model';
+import { StatsResponse } from './model/stats.model';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +24,13 @@ export class TrainingService {
     return this.http.post<TrainingResponse>(
       environment.apiURL + '/training',
       training
+    );
+  }
+
+  trackProgress(month: Month): Observable<StatsResponse[]> {
+    return this.http.put<StatsResponse[]>(
+      environment.apiURL + '/training/progress',
+      month
     );
   }
 }
