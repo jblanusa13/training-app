@@ -15,9 +15,7 @@ export class TrainingService {
   constructor(private http: HttpClient) {}
 
   getAllTypes(): Observable<TrainingType[]> {
-    return this.http.get<TrainingType[]>(
-      environment.apiURL + '/training/types'
-    );
+    return this.http.get<TrainingType[]>(environment.apiURL + '/trainingType');
   }
 
   createTraining(training: Training): Observable<TrainingResponse> {

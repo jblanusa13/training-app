@@ -19,7 +19,6 @@ import { LoginUser } from '../../model/user.model';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  showPassword: boolean = false;
   constructor(
     private service: AuthService,
     private router: Router,
@@ -30,10 +29,6 @@ export class LoginComponent {
     email: new FormControl(''),
     password: new FormControl(''),
   });
-
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
-  }
 
   login(): void {
     const login: LoginUser = {

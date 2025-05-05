@@ -47,6 +47,7 @@ export class AuthService {
 
   setUser(): void {
     const accessToken = this.tokenService.getAccessToken() || '';
+    if (!accessToken) return;
     const user: User = {
       id: this.jwtHelperService.decodeToken(accessToken).id,
       email: this.jwtHelperService.decodeToken(accessToken).email,

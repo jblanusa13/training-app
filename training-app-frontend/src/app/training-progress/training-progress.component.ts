@@ -11,25 +11,42 @@ import { ToastrService } from 'ngx-toastr';
 import { TrainingService } from '../training.service';
 import { CalendarModule } from 'primeng/calendar';
 import { Month } from '../model/month.model';
-import { StatsResponse } from '../model/stats.model';
-import { NgFor, NgIf } from '@angular/common';
+import { ParsedStatsResponse, StatsResponse } from '../model/stats.model';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
+import { AuthService } from '../auth/auth.service';
+import { User } from '../model/user.model';
 
 @Component({
   selector: 'app-training-progress',
   standalone: true,
-  imports: [CalendarModule, FormsModule, ReactiveFormsModule, NgFor, NgIf],
+  imports: [
+    CalendarModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgFor,
+    NgIf,
+    DatePipe,
+  ],
   templateUrl: './training-progress.component.html',
   styleUrl: './training-progress.component.css',
 })
 export class TrainingProgressComponent {
   statsList: StatsResponse[] = [];
+  user: User = { id: '', email: '' };
   noActivities: boolean = false;
 
   constructor(
     private service: TrainingService,
+    private authService: AuthService,
     private router: Router,
     private toast: ToastrService
   ) {}
+
+  ngOnInit() {
+    this.authService.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
 
   calendarForm = new FormGroup({
     month: new FormControl('', [Validators.required]),
@@ -40,8 +57,8 @@ export class TrainingProgressComponent {
     const localDate = new Date(rawDate);
     const utcString = localDate.toISOString();
 
-    console.log('MNTH: ', utcString);
     const month: Month = {
+      userId: this.user.id,
       dateTime: utcString,
     };
 
@@ -49,9 +66,12 @@ export class TrainingProgressComponent {
       this.service.trackProgress(month).subscribe({
         next: (result) => {
           if (result) {
-            console.log('STATS: ', result);
             if (result.length > 0) {
-              this.statsList = result;
+              this.statsList = result.map((stat) => ({
+                ...stat,
+                startDate: this.getDatePart(stat.startDate),
+                endDate: this.getDatePart(stat.endDate),
+              }));
               this.noActivities = false;
             } else {
               this.statsList = [];
@@ -64,5 +84,10 @@ export class TrainingProgressComponent {
         },
       });
     }
+  }
+
+  getDatePart(dateString: string): string {
+    const date = dateString.trim().split(' ')[0];
+    return date;
   }
 }

@@ -25,6 +25,7 @@ namespace TrainingApp.Config
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITrainingService, TrainingService>();
+            services.AddScoped<ITrainingTypeService, TrainingTypeService>();
             services.AddScoped<ITokenGenerator, JwtTokenGenerator>();
         }
 
@@ -32,6 +33,7 @@ namespace TrainingApp.Config
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITrainingRepository, TrainingRepository>();
+            services.AddScoped<ITrainingTypeRepository, TrainingTypeRepository>();
 
             services.AddDbContext<TrainingContext>(opt =>
                         opt.UseNpgsql(configuration.GetConnectionString("Database")));

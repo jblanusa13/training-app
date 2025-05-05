@@ -6,3 +6,9 @@ export interface StatsResponse {
   difficultyAvg: number;
   tirednessAvg: number;
 }
+
+export interface ParsedStatsResponse
+  extends Omit<StatsResponse, 'startDate' | 'endDate'> {
+  startDate: Date;
+  endDate: Date;
+}

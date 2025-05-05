@@ -14,15 +14,10 @@ namespace TrainingApp.Data.Repository
             _dbContext = dbContext;
         }
 
-        public List<TrainingType> GetAllTypes()
-        {
-            return _dbContext.TrainingTypes.ToList();
-        }
-
-        public List<Training> GetAllBetweenDates(DateTime startDateTime)
+        public List<Training> GetAllBetweenDates(DateTime startDateTime, Guid userId)
         {
             return _dbContext.Trainings
-                    .Where(x => x.DateTime >= startDateTime && x.DateTime < startDateTime.AddMonths(1))
+                    .Where(x => x.DateTime >= startDateTime && x.DateTime < startDateTime.AddMonths(1) && x.UserId.Equals(userId))
                     .ToList();
         }
 

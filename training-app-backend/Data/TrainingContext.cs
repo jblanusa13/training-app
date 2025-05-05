@@ -11,10 +11,5 @@ namespace TrainingApp.Data
         public DbSet<Training> Trainings { get; set; }
 
         public TrainingContext(DbContextOptions<TrainingContext> options) : base(options) { }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
-        }
     }
 }

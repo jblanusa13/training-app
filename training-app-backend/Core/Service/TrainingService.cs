@@ -73,8 +73,8 @@ namespace TrainingApp.Core.Service
                         EndDate = GetLastDateOfWeek(trainings.Max(t => t.DateTime)).ToString(),
                         TrainingsNumber = trainings.Count,
                         TrainingsDuration = trainings.Sum(t => t.Duration),
-                        DifficultyAvg = trainings.Average(t => t.Difficulty),
-                        TirednessAvg = trainings.Average(t => t.Tiredness)
+                        DifficultyAvg = Math.Round(trainings.Average(t => t.Difficulty), 2),
+                        TirednessAvg = Math.Round(trainings.Average(t => t.Tiredness), 2)
                     };
                 }).ToList();
 
@@ -91,25 +91,16 @@ namespace TrainingApp.Core.Service
 
         private Dictionary<int, List<Training>> GetSortedTrainingsInMonth(MonthDto monthDto)
         {
-            var trainings = _trainingRepository.GetAllBetweenDates(DateTime.Parse(monthDto.DateTime).ToUniversalTime());
+            var trainings = _trainingRepository.GetAllBetweenDates(DateTime.Parse(monthDto.DateTime).ToUniversalTime(), new Guid(monthDto.UserId));
 
             Calendar Calendar = CultureInfo.InvariantCulture.Calendar;
-            Dictionary<int, List<Training>> trainingsByWeek = new Dictionary<int, List<Training>>();
-            int weekNumber;
 
-            foreach (Training training in trainings)
-            {
-                weekNumber = Calendar.GetWeekOfYear(training.DateTime, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            var trainingsByWeek = trainings
+                .GroupBy(t => Calendar.GetWeekOfYear(t.DateTime, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday))
+                .OrderBy(pair => pair.Key)
+                .ToDictionary(g => g.Key, g => g.ToList());
 
-                if (!trainingsByWeek.ContainsKey(weekNumber))
-                {
-                    trainingsByWeek[weekNumber] = new List<Training>();
-                }
-
-                trainingsByWeek[weekNumber].Add(training);
-            }
-
-            return trainingsByWeek.OrderBy(pair => pair.Key).ToDictionary(pair => pair.Key, pair => pair.Value); ;
+            return trainingsByWeek;
         }
 
 
@@ -125,21 +116,6 @@ namespace TrainingApp.Core.Service
             while (date.DayOfWeek != DayOfWeek.Sunday)
                 date = date.AddDays(1);
             return date;
-        }
-
-        public Result<List<TrainingType>> GetAllTypes()
-        {
-            try
-            {
-                var result = _trainingRepository.GetAllTypes();
-                return result;
-            }
-            catch (Exception e)
-            {
-                return Result.Fail(new Error("Accessed resource not found.")
-                    .WithMetadata("code", 404))
-                    .WithError(e.Message);
-            }
         }
     }
 }

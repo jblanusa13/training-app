@@ -100,8 +100,6 @@ export class NewActivityComponent {
           dateTime: utcString,
         };
 
-        console.log('training: ', training);
-
         this.service.createTraining(training).subscribe({
           next: (result) => {
             if (result) {

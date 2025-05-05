@@ -31,13 +31,5 @@ namespace TrainingApp.API.Controllers
             return CreateResponse(result);
         }
 
-        [HttpGet("types")]
-        public ActionResult<List<TrainingType>> GetAllTypes()
-        {
-            var result = _trainingService.GetAllTypes();
-            return CreateResponse(result);
-        }
-
-
     }
 }

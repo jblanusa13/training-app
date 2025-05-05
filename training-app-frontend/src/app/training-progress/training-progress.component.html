@@ -25,7 +25,10 @@
   </div>
   <div class="card">
     <div *ngFor="let stat of statsList" class="week-stat">
-      <p class="dates">{{ stat.startDate }} - {{ stat.endDate }}</p>
+      <p class="dates">
+        {{ stat.startDate }} -
+        {{ stat.endDate }}
+      </p>
       <div class="stats-data">
         <div class="stat">
           <p class="stat-name">#Acts</p>
